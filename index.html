@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level Up - Cursos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-[#edceff] text-[#013765] overflow-x-hidden max-w-[100vw]">
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="bg-[#98e6d6] shadow-sm">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- LOGO -->
+      <div class="flex items-center gap-2">
+        <img src="logo.png" alt="logo" class="w-16 md:w-20">
+      </div>
+
+      <!-- LINKS -->
+      <ul class="hidden md:flex items-center gap-6 font-medium text-[#013765]">
+        <li><a href="#cursos" class="hover:text-[#bd5ecf] transition">Cursos</a></li>
+        <li><a href="#metodologia" class="hover:text-[#bd5ecf] transition">Metodologia</a></li>
+        <li><a href="#sobre" class="hover:text-[#bd5ecf] transition">Quem somos</a></li>
+      </ul>
+
+      <!-- BOTÃO -->
+      <button class="bg-[#bd5ecf] text-white font-semibold px-4 py-2 rounded hover:bg-[#013765] transition md:w-auto">
+        Comece agora
+      </button>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="bg-[#bd5ecf] py-16 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      <!-- Logo -->
+      <div class="flex justify-center md:justify-start">
+        <img src="logo.png" alt="logo" class="h-32 md:h-40">
+      </div>
+      
+      <!-- Título -->
+      <div class="text-center md:text-left">
+        <h1 class="text-4xl md:text-5xl font-bold text-white">Avanço para o futuro</h1>
+        <p class="text-xl text-white mt-4 opacity-95">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CURSOS ==================== -->
+  <section id="cursos" class="bg-[#edceff] py-16 w-full overflow-x-hidden">
+    <div class="max-w-5xl mx-auto px-4 md:px-6 space-y-20">
+
+      <!-- Curso de Inglês -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-start">
+          <div class="bg-[#013765] rounded-lg p-6 flex flex-col items-center shadow-lg">
+            <div class="bg-gray-500 w-60 h-48 rounded-lg mb-4 flex items-center justify-center">
+              <span class="text-white font-bold text-lg">Inglês</span>
+            </div>
+            <span class="text-white font-bold mb-4 text-xl">Curso de Inglês</span>
+            <button class="bg-[#bd5ecf] text-white font-semibold px-6 py-3 rounded-lg shadow-md">
+              Assinar agora
+            </button>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 text-center md:text-left">
+          <h2 class="text-4xl font-bold mb-4 text-[#013765]">Curso de Inglês</h2>
+          <p class="text-lg leading-relaxed text-[#013765]">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, nihil eligendi illum natus sunt minima rerum id inventore, quibusdam dolor earum explicabo repudiandae similique. Suscipit odio rerum laudantium magni nesciunt?
+          </p>
+        </div>
+      </div>
+
+      <div class="inline-flex items-center justify-center w-full">
+        <hr class="w-60 h-px my-8 bg-[#013765] border-0">
+        <span class="absolute px-3 font-bold text-[#013765] -translate-x-1/2 bg-[#edceff] left-1/2">ou</span>
+      </div>
+
+      <!-- Curso de Espanhol -->
+      <div class="flex flex-col md:flex-row-reverse items-center justify-between gap-10">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+          <div class="bg-[#013765] rounded-lg p-6 flex flex-col items-center shadow-lg">
+            <div class="bg-gray-500 w-60 h-48 rounded-lg mb-4 flex items-center justify-center">
+              <span class="text-white font-bold text-lg">Espanhol</span>
+            </div>
+            <span class="text-white font-bold mb-4 text-xl">Curso de Espanhol</span>
+            <button class="bg-[#bd5ecf] text-white font-semibold px-6 py-3 rounded-lg shadow-md">
+              Assinar agora
+            </button>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 text-center md:text-left">
+          <h2 class="text-4xl font-bold mb-4 text-[#013765]">Curso de Espanhol</h2>
+          <p class="text-lg leading-relaxed text-[#013765]">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, repudiandae nihil harum nemo quis deleniti sit quam similique facilis asperiores consequatur molestias voluptas consequuntur minima earum delectus! Facilis, repellendus esse.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== METODOLOGIA ==================== -->
+  <section id="metodologia" class="bg-[#6cc4ea] py-16 text-white">
+    <div class="max-w-5xl mx-auto text-center px-4">
+      <h2 class="text-4xl font-bold mb-12">Nossa Metodologia</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div class="bg-[#98e6d6] rounded-xl p-6 border border-white">
+          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-play-circle text-[#013765] text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-2xl mb-4 text-[#013765]">Videoaulas Interativas</h3>
+          <p class="text-[#013765]">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="bg-[#98e6d6] rounded-xl p-6 border border-white">
+          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-tasks text-[#013765] text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-2xl mb-4 text-[#013765]">Exercícios Práticos</h3>
+          <p class="text-[#013765]">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="bg-[#98e6d6] rounded-xl p-6 border border-white">
+          <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-robot text-[#013765] text-2xl"></i>
+          </div>
+          <h3 class="font-bold text-2xl mb-4 text-[#013765]">Chatbot IA</h3>
+          <p class="text-[#013765]">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOBRE NÓS ==================== -->
+  <section id="sobre" class="bg-[#edceff] py-16">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 px-4 md:px-6">
+      <div class="w-full md:w-1/2">
+        <h2 class="text-3xl font-bold mb-6 text-[#013765]">Sobre Nós</h2>
+        <p class="text-lg leading-relaxed text-[#013765]">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, inventore dicta eligendi error facere deleniti praesentium cupiditate explicabo! Sed odit saepe ad eius, inventore cum in illum assumenda deserunt quae?
+        </p>
+      </div>
+      <div class="w-full md:w-1/2">
+        <div class="bg-[#98e6d6] w-full h-64 rounded-2xl flex items-center justify-center text-[#013765] text-lg font-semibold border-2 border-white">
+          Nossa Equipe
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RODAPÉ ==================== -->
+  <footer class="bg-[#013765] text-white pt-12 pb-6">
+    <div class="max-w-6xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Coluna 1: Logo e descrição -->
+        <div class="md:col-span-2">
+          <div class="flex items-center mb-4">
+            <img src="logo.png" alt="logo" class="w-30 h-16 mr-3">
+          </div>
+          <p class="text-[#6cc4ea] mb-4 max-w-md">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-[#6cc4ea] hover:text-[#98e6d6] transition">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="#" class="text-[#6cc4ea] hover:text-[#98e6d6] transition">
+              <i class="fab fa-whatsapp text-xl"></i>
+            </a>
+            <a href="#" class="text-[#6cc4ea] hover:text-[#98e6d6] transition">
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Coluna 2: Links rápidos -->
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-[#98e6d6]">Links Rápidos</h3>
+          <ul class="space-y-2">
+            <li><a href="#cursos" class="text-[#6cc4ea] hover:text-[#98e6d6] transition">Cursos</a></li>
+            <li><a href="#metodologia" class="text-[#6cc4ea] hover:text-[#98e6d6] transition">Metodologia</a></li>
+            <li><a href="#sobre" class="text-[#6cc4ea] hover:text-[#98e6d6] transition">Sobre Nós</a></li>
+          </ul>
+        </div>
+        
+        <!-- Coluna 3: Contato -->
+        <div>
+          <h3 class="font-bold text-lg mb-4 text-[#98e6d6]">Contato</h3>
+          <ul class="space-y-2 text-[#6cc4ea]">
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-2 text-sm"></i>
+              <span>contato@levelup.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-2 text-sm"></i>
+              <span>(15) 9999-9999</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-2 text-sm"></i>
+              <span>Itapeva, SP</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-[#6cc4ea] flex flex-col md:flex-row justify-between items-center">
+        <p class="text-[#6cc4ea] text-sm mb-4 md:mb-0"> 
+          2025 Level Up! &copy; Todos os direitos reservados.
+        </p>
+        <div class="flex space-x-6 text-sm text-[#6cc4ea]">
+          <a href="#" class="hover:text-[#98e6d6] transition">Política de Privacidade</a>
+          <a href="#" class="hover:text-[#98e6d6] transition">Termos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
