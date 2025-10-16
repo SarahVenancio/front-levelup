@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Level Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background-color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .nav-item {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        
+        .chat-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ddd;
+        }
+        
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .chat-logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .chat-title {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .message-bot {
+            background: white;
+            border: 1px solid #ddd;
+            margin-right: auto;
+        }
+        
+        .message-user {
+            background: #007bff;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .send-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: white;
+            padding: 20px 30px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .nav-menu {
+                gap: 15px;
+            }
+            
+            .chat-container {
+                padding: 20px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">LOGO</div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item">Voltar para o curso</a>
+            <a href="#" class="nav-item">Meus cursos</a>
+            <a href="#" class="nav-item">Perfil</a>
+            <a href="#" class="nav-item">Sair</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-logo">LOGO</div>
+                <div class="chat-title">Dúvidas Level Up Disponível</div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message message-bot">
+                    Ola, o que posso te ensinar hoje?
+                </div>
+                <div class="message message-user">
+                    Como posso melhorar meu vocabulário em inglês?
+                </div>
+                <div class="message message-bot">
+                    Recomendo praticar com flashcards e ler textos em inglês diariamente!
+                </div>
+                <div class="message message-user">
+                    Qual é a melhor forma de aprender gramática?
+                </div>
+                <div class="message message-bot">
+                    Sugiro estudar com exemplos práticos e exercícios contextualizados.
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Digite sua dúvida...">
+                <button class="send-button" id="sendButton">Enviar</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Rodapé
+    </footer>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+
+        // Função para adicionar mensagem
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'message-user' : 'message-bot'}`;
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Função para simular resposta do bot
+        function getBotResponse(userMessage) {
+            const responses = [
+                "Entendi sua dúvida! Posso explicar melhor...",
+                "Excelente pergunta! Vou te ajudar com isso.",
+                "Hmm, deixe-me pensar na melhor forma de explicar...",
+                "Essa é uma dúvida comum! Vamos lá:",
+                "Perfeito! Aqui está a resposta para sua questão:",
+                "Ótima pergunta! Posso te ensinar sobre isso."
+            ];
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Enviar mensagem
+        sendButton.addEventListener('click', function() {
+            const message = chatInput.value.trim();
+            
+            if (message) {
+                // Adiciona mensagem do usuário
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simula resposta do bot após 1 segundo
+                setTimeout(() => {
+                    const botResponse = getBotResponse(message);
+                    addMessage(botResponse, false);
+                }, 1000);
+            }
+        });
+
+        // Enter para enviar mensagem
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+
+        // Rolagem automática para baixo
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    </script>
+</body>
+</html>
