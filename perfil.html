@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - LinguaLearn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --border-radius: 16px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Header */
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            grid-column: 1 / -1;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .profile-level {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .level-badge {
+            background: var(--success);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Botão de Editar */
+        .edit-profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .edit-profile-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            transition: var(--transition);
+            height: fit-content;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--primary);
+        }
+
+        .card-action {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Languages */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .language-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .language-card.active {
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, 0.05);
+        }
+
+        .language-flag {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .language-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .language-level {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .achievement {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .achievement.earned .achievement-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .achievement-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Recent Activity */
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .activity-points {
+            background: var(--success);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Edit Form */
+        .edit-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .edit-form.active {
+            display: flex;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray-light);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid var(--gray-light);
+        }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .upload-btn {
+            background: var(--light);
+            color: var(--primary);
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .upload-btn:hover {
+            background: var(--gray-light);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--gray-light);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+            transform: translateY(-2px);
+        }
+
+        /* Layout específico para os cards lado a lado */
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Estatísticas adicionais */
+        .stats-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .goals-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .goal-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            background: var(--light);
+            border-radius: 10px;
+        }
+
+        .goal-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .goal-details {
+            flex: 1;
+        }
+
+        .goal-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .goal-progress {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header do Perfil -->
+        <div class="profile-header">
+            <!-- Botão de Editar -->
+            <button class="edit-profile-btn" id="edit-profile-btn">
+                <i class="fas fa-edit"></i>
+                Editar Perfil
+            </button>
+            
+            <div class="header-content">
+                <div class="profile-avatar">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Foto de perfil" id="profile-img">
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name" id="profile-name">Ana Silva</h1>
+                    <div class="profile-level">
+                        <span>Nível 12</span>
+                        <span class="level-badge">Intermediário</span>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-value">128</span>
+                            <span class="stat-label">Aulas</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">42</span>
+                            <span class="stat-label">Dias seguidos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">2.5k</span>
+                            <span class="stat-label">Pontos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-layout">
+            <!-- Coluna Esquerda -->
+            <div class="left-column">
+                <!-- Idiomas em Aprendizado -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-globe-americas"></i> Meus Idiomas</h3>
+                        <span class="card-action">Gerenciar</span>
+                    </div>
+                    <div class="languages-grid">
+                        <div class="language-card active">
+                            <div class="language-flag">🇺🇸</div>
+                            <div class="language-name">Inglês</div>
+                            <div class="language-level">Intermediário</div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%"></div>
+                            </div>
+                            <div class="language-days">42 dias seguidos</div>
+                        </div>
+                        <div class="language-card">
+                            <div class="language-flag">🇪🇸</div>
+                            <div class="language-name">Espanhol</div>
+                            <div class="language-level">Básico</div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 30%"></div>
+                            </div>
+                            <div class="language-days">15 dias seguidos</div>
+                        </div>
+                        <div class="language-card">
+                            <div class="language-flag">🇫🇷</div>
+                            <div class="language-name">Francês</div>
+                            <div class="language-level">Iniciante</div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 15%"></div>
+                            </div>
+                            <div class="language-days">3 dias seguidos</div>
+                        </div>
+                        <div class="language-card">
+                            <div class="language-flag"><i class="fas fa-plus"></i></div>
+                            <div class="language-name">Adicionar</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Conquistas -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-trophy"></i> Conquistas</h3>
+                        <span class="card-action">Ver todas</span>
+                    </div>
+                    <div class="achievements-grid">
+                        <div class="achievement earned">
+                            <div class="achievement-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="achievement-name">7 Dias</div>
+                        </div>
+                        <div class="achievement earned">
+                            <div class="achievement-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="achievement-name">50 Aulas</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="achievement-name">Fluente</div>
+                        </div>
+                        <div class="achievement earned">
+                            <div class="achievement-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="achievement-name">Rápido</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="achievement-name">Perfeccionista</div>
+                        </div>
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="achievement-name">Lendário</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coluna Direita -->
+            <div class="right-column">
+                <!-- Atividade Recente -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-history"></i> Atividade Recente</h3>
+                        <span class="card-action">Ver tudo</span>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Aula de Inglês concluída</div>
+                                <div class="activity-time">Hoje, 09:30</div>
+                            </div>
+                            <div class="activity-points">+10</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Exercício de Pronúncia</div>
+                                <div class="activity-time">Ontem, 18:45</div>
+                            </div>
+                            <div class="activity-points">+15</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Desafio de Vocabulário</div>
+                                <div class="activity-time">Ontem, 14:20</div>
+                            </div>
+                            <div class="activity-points">+20</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-title">Conquista "7 Dias" desbloqueada</div>
+                                <div class="activity-time">2 dias atrás</div>
+                            </div>
+                            <div class="activity-points">+50</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Estatísticas de Aprendizado -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-chart-line"></i> Estatísticas</h3>
+                        <span class="card-action">Detalhes</span>
+                    </div>
+                    <div class="stats-content">
+                        <div class="stat-item">
+                            <div class="stat-info">
+                                <span class="stat-label">Tempo de estudo esta semana</span>
+                                <span class="stat-value">3h 45min</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-info">
+                                <span class="stat-label">Palavras aprendidas</span>
+                                <span class="stat-value">428</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-info">
+                                <span class="stat-label">Lições concluídas</span>
+                                <span class="stat-value">24/30</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Próximas Metas -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-flag"></i> Próximas Metas</h3>
+                        <span class="card-action">Ver todas</span>
+                    </div>
+                    <div class="goals-list">
+                        <div class="goal-item">
+                            <div class="goal-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="goal-details">
+                                <div class="goal-title">Chegar a 50 dias seguidos</div>
+                                <div class="goal-progress">42/50 dias</div>
+                            </div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="goal-details">
+                                <div class="goal-title">Completar nível Intermediário</div>
+                                <div class="goal-progress">65% concluído</div>
+                            </div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="goal-details">
+                                <div class="goal-title">Primeira conversa em inglês</div>
+                                <div class="goal-progress">Em andamento</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navegação Inferior -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Início</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-book-open nav-icon"></i>
+            <span>Aprender</span>
+        </a>
+        <a href="#" class="nav-item active">
+            <i class="fas fa-user nav-icon"></i>
+            <span>Perfil</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-chart-line nav-icon"></i>
+            <span>Estatísticas</span>
+        </a>
+    </div>
+    
+    <!-- Formulário de Edição -->
+    <div class="edit-form" id="edit-form">
+        <div class="form-container">
+            <h3 class="form-title">Editar Perfil</h3>
+            <form id="profile-form">
+                <div class="avatar-upload">
+                    <div class="avatar-preview">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Preview" id="avatar-preview">
+                    </div>
+                    <button type="button" class="upload-btn" id="upload-trigger">
+                        <i class="fas fa-camera"></i>
+                        Alterar Foto
+                    </button>
+                    <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="name">Nome</label>
+                    <input type="text" class="form-control" id="name" value="Ana Silva">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" value="ana.silva@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="bio">Biografia</label>
+                    <textarea class="form-control" id="bio" rows="3">Apaixonada por aprender novos idiomas e culturas!</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="daily-goal">Meta Diária (minutos)</label>
+                    <input type="number" class="form-control" id="daily-goal" value="20">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="language-level">Nível de Inglês</label>
+                    <select class="form-control" id="language-level">
+                        <option>Iniciante</option>
+                        <option selected>Intermediário</option>
+                        <option>Avançado</option>
+                        <option>Fluente</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-edit">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Salvar Alterações
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editProfileBtn = document.getElementById('edit-profile-btn');
+            const editForm = document.getElementById('edit-form');
+            const cancelEditBtn = document.getElementById('cancel-edit');
+            const profileForm = document.getElementById('profile-form');
+            const uploadTrigger = document.getElementById('upload-trigger');
+            const avatarUpload = document.getElementById('avatar-upload');
+            const avatarPreview = document.getElementById('avatar-preview');
+            const profileImg = document.getElementById('profile-img');
+            
+            // Abrir formulário de edição ao clicar no botão
+            editProfileBtn.addEventListener('click', function() {
+                editForm.classList.add('active');
+            });
+            
+            // Fechar formulário de edição
+            cancelEditBtn.addEventListener('click', function() {
+                editForm.classList.remove('active');
+            });
+            
+            // Upload de imagem
+            uploadTrigger.addEventListener('click', function() {
+                avatarUpload.click();
+            });
+            
+            avatarUpload.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        avatarPreview.src = e.target.result;
+                        profileImg.src = e.target.result;
+                    }
+                    
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            // Envio do formulário
+            profileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Atualizar informações do perfil
+                document.getElementById('profile-name').textContent = document.getElementById('name').value;
+                
+                // Fechar formulário
+                editForm.classList.remove('active');
+                
+                // Mostrar mensagem de sucesso
+                alert('Perfil atualizado com sucesso!');
+            });
+            
+            // Fechar formulário ao clicar fora
+            editForm.addEventListener('click', function(e) {
+                if (e.target === editForm) {
+                    editForm.classList.remove('active');
+                }
+            });
+            
+            // Adicionar interação aos cards de idiomas
+            const languageCards = document.querySelectorAll('.language-card');
+            languageCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    if (!this.querySelector('.fa-plus')) {
+                        languageCards.forEach(c => c.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
