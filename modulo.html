@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1 - Pronúncia Básica do Inglês</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .header {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #6a11cb;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .module-info {
+            display: flex;
+            gap: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .video-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+        
+        .questions-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+        
+        h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2::before {
+            content: "🎬";
+            font-size: 20px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h3::before {
+            content: "📝";
+            font-size: 18px;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-placeholder::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #6a11cb;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .video-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .meta-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .video-description {
+            color: #5a6c7d;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .video-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #5a6c7d;
+            border: 2px solid #e9ecef;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+            transform: translateY(-3px);
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .progress-section {
+            margin-top: auto;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #5a6c7d;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            border-radius: 10px;
+            width: 65%;
+            transition: width 0.5s ease;
+        }
+        
+        .questao {
+            margin-bottom: 25px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .questao.ativa {
+            border-color: #6a11cb;
+            background: white;
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .questao-titulo {
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .questao-titulo::before {
+            content: "❓";
+            font-size: 14px;
+        }
+        
+        .questao-texto {
+            margin-bottom: 20px;
+            color: #5a6c7d;
+            font-size: 15px;
+            line-height: 1.6;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .alternativas {
+            margin-left: 10px;
+        }
+        
+        .alternativa {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #5a6c7d;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .alternativa:hover {
+            background: white;
+            border-color: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .alternativa.selecionada {
+            background: #e8f5e8;
+            font-weight: 600;
+            border-color: #2ecc71;
+            color: #27ae60;
+            transform: translateX(5px);
+        }
+        
+        .alternativa-letter {
+            background: #6a11cb;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .alternativa.selecionada .alternativa-letter {
+            background: #2ecc71;
+        }
+        
+        .contador-questoes {
+            text-align: center;
+            color: #6a11cb;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: #f0f3ff;
+            padding: 12px;
+            border-radius: 10px;
+        }
+        
+        .navegacao-questoes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f3ff;
+        }
+        
+        .btn-navegacao {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .btn-navegacao:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+        }
+        
+        .btn-navegacao:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-enviar {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+        }
+        
+        .btn-enviar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(46, 204, 113, 0.6);
+        }
+        
+        .completion-message {
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e8;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #27ae60;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Pop-up de Resultados - Design Compacto */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .popup-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 0;
+            width: 420px;
+            max-width: 90vw;
+            max-height: 90vh;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .popup-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 30px 25px 25px;
+            color: white;
+            position: relative;
+        }
+        
+        .popup-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .popup-title {
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .popup-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .popup-content {
+            padding: 30px 25px 25px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .result-item {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .result-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .result-label {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .result-value {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .acertos {
+            color: #2ecc71;
+            text-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        .erros {
+            color: #e74c3c;
+            text-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+        }
+        
+        .nota-final {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nota-final::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .nota-label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nota-value {
+            font-size: 42px;
+            font-weight: 900;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .celebration-section {
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .celebration-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .celebration-circle {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 40px;
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.4);
+            border: 3px solid white;
+            position: relative;
+            z-index: 2;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .celebration-sparkles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            z-index: 1;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+        }
+        
+        .btn-home {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-home::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(46, 204, 113, 0.5);
+        }
+        
+        .btn-home:hover::before {
+            left: 100%;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: confettiFall 4s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .module-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .video-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+            
+            .popup-container {
+                max-width: 95%;
+            }
+            
+            .popup-title {
+                font-size: 22px;
+            }
+            
+            .popup-subtitle {
+                font-size: 14px;
+            }
+            
+            .results-grid {
+                gap: 10px;
+            }
+            
+            .result-item {
+                padding: 15px 10px;
+            }
+            
+            .result-value {
+                font-size: 30px;
+            }
+            
+            .nota-value {
+                font-size: 36px;
+            }
+            
+            .celebration-container {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .celebration-circle {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Módulo 1 - Pronúncia Básica do Inglês</h1>
+            <div class="module-info">
+                <span><i class="fas fa-book"></i> Curso: Inglês Iniciante</span>
+                <span><i class="fas fa-clock"></i> Duração: 2 horas</span>
+                <span><i class="fas fa-chart-line"></i> Progresso: 65%</span>
+            </div>
+        </div>
+        
+        <!-- Seção do Vídeo (Lado Esquerdo) -->
+        <div class="video-section">
+            <h2>Vídeo Aula</h2>
+            
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <div class="play-button"><i class="fas fa-play"></i></div>
+                    <div>Clique para reproduzir o vídeo</div>
+                </div>
+            </div>
+            
+            <div class="video-info">
+                <div class="video-title">Fundamentos da Pronúncia Inglesa</div>
+                
+                <div class="meta-info">
+                    <div class="meta-item"><i class="fas fa-clock"></i> 15 min</div>
+                    <div class="meta-item"><i class="fas fa-user"></i> Prof. Ana Silva</div>
+                    <div class="meta-item"><i class="fas fa-signal"></i> Nível: Iniciante</div>
+                </div>
+                
+                <div class="video-description">
+                    Nesta aula você aprenderá os sons básicos do inglês que não existem em português, 
+                    com exercícios práticos de repetição e dicas para melhorar sua pronúncia.
+                </div>
+                
+                <div class="video-actions">
+                    <button class="btn btn-primary" id="btn-complete">
+                        <i class="fas fa-check-circle"></i> Marcar como Concluído
+                    </button>
+                    <button class="btn btn-secondary" id="btn-notes">
+                        <i class="fas fa-edit"></i> Fazer Anotações
+                    </button>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" id="btn-prev-video">
+                    <i class="fas fa-arrow-left"></i> Aula Anterior
+                </button>
+                <button class="btn btn-primary" id="btn-next-video">
+                    Próxima Aula <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span>Progresso da Aula</span>
+                    <span>65%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção das Perguntas (Lado Direito) -->
+        <div class="questions-section">
+            <h3>Atividades sobre o Vídeo</h3>
+            
+            <div class="contador-questoes">
+                Questão <span id="questao-atual">1</span> de 3
+            </div>
+            
+            <!-- Questão 1 (Visível inicialmente) -->
+            <div class="questao ativa" id="questao-1">
+                <div class="questao-titulo">Questão 1</div>
+                <div class="questao-texto">
+                    Qual é a principal diferença entre os sons do "th" em inglês e os sons similares em português?
+                </div>
+                <div class="alternativas">
+                    <div class="alternativa" data-questao="1" data-alternativa="A">
+                        <div class="alternativa-letter">A</div>
+                        <div>O "th" inglês não existe em português e requer posicionamento específico da língua</div>
+                    </div>
+                    <div class="alternativa" data-questao="1" data-alternativa="B">
+                        <div class="alternativa-letter">B</div>
+                        <div>O "th" inglês é exatamente igual ao "t" português</div>
+                    </div>
+                    <div class="alternativa" data-questao="1" data-alternativa="C">
+                        <div class="alternativa-letter">C</div>
+                        <div>O "th" inglês é mais forte que o "t" português</div>
+                    </div>
+                    <div class="alternativa" data-questao="1" data-alternativa="D">
+                        <div class="alternativa-letter">D</div>
+                        <div>Não há diferenças significativas entre os sons</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Questão 2 (Oculta inicialmente) -->
+            <div class="questao" id="questao-2" style="display: none;">
+                <div class="questao-titulo">Questão 2</div>
+                <div class="questao-texto">
+                    Por que é importante praticar a diferença entre os sons de "i" curto e longo em inglês?
+                </div>
+                <div class="alternativas">
+                    <div class="alternativa" data-questao="2" data-alternativa="A">
+                        <div class="alternativa-letter">A</div>
+                        <div>Porque pode mudar completamente o significado das palavras</div>
+                    </div>
+                    <div class="alternativa" data-questao="2" data-alternativa="B">
+                        <div class="alternativa-letter">B</div>
+                        <div>Porque os nativos sempre notam quando erramos</div>
+                    </div>
+                    <div class="alternativa" data-questao="2" data-alternativa="C">
+                        <div class="alternativa-letter">C</div>
+                        <div>Porque é a única maneira de ser entendido</div>
+                    </div>
+                    <div class="alternativa" data-questao="2" data-alternativa="D">
+                        <div class="alternativa-letter">D</div>
+                        <div>Porque torna o sotaque mais elegante</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Questão 3 (Oculta inicialmente) -->
+            <div class="questao" id="questao-3" style="display: none;">
+                <div class="questao-titulo">Questão 3</div>
+                <div class="questao-texto">
+                    Qual técnica foi sugerida no vídeo para melhorar a pronúncia de sons difíceis?
+                </div>
+                <div class="alternativas">
+                    <div class="alternativa" data-questao="3" data-alternativa="A">
+                        <div class="alternativa-letter">A</div>
+                        <div>Gravar a própria voz e comparar com nativos</div>
+                    </div>
+                    <div class="alternativa" data-questao="3" data-alternativa="B">
+                        <div class="alternativa-letter">B</div>
+                        <div>Falar mais rápido para disfarçar os erros</div>
+                    </div>
+                    <div class="alternativa" data-questao="3" data-alternativa="C">
+                        <div class="alternativa-letter">C</div>
+                        <div>Evitar palavras com sons difíceis</div>
+                    </div>
+                    <div class="alternativa" data-questao="3" data-alternativa="D">
+                        <div class="alternativa-letter">D</div>
+                        <div>Usar apenas a escrita para comunicação</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navegacao-questoes">
+                <button class="btn-navegacao" id="btn-anterior" disabled>
+                    <i class="fas fa-arrow-left"></i> Anterior
+                </button>
+                <button class="btn-navegacao" id="btn-proximo">
+                    Próxima <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <button class="btn-enviar" id="btn-enviar" style="display: none;">
+                <i class="fas fa-paper-plane"></i> Enviar Atividade
+            </button>
+            
+            <div class="completion-message" id="completion-message">
+                <i class="fas fa-check-circle"></i> Parabéns! Você completou todas as questões!
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de Resultados - Design Compacto -->
+    <div class="popup-overlay" id="popupResultados">
+        <div class="popup-container">
+            <div class="popup-header">
+                <h1 class="popup-title">Parabéns! <i class="fas fa-trophy"></i></h1>
+                <div class="popup-subtitle">Você concluiu este módulo com sucesso</div>
+            </div>
+            
+            <div class="popup-content">
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-label">Acertos</div>
+                        <div class="result-value acertos">9</div>
+                    </div>
+                    
+                    <div class="result-item">
+                        <div class="result-label">Erros</div>
+                        <div class="result-value erros">1</div>
+                    </div>
+                </div>
+                
+                <div class="nota-final">
+                    <div class="nota-label">Nota Final</div>
+                    <div class="nota-value">9.0</div>
+                </div>
+                
+                <div class="celebration-section">
+                    <div class="celebration-container">
+                        <div class="celebration-circle">🎓</div>
+                        <div class="celebration-sparkles" id="celebrationSparkles"></div>
+                    </div>
+                </div>
+                
+                <button class="btn-home" id="btnVoltarHome">
+                    <i class="fas fa-home"></i> Voltar para a Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let questaoAtual = 1;
+        const totalQuestoes = 3;
+        const respostas = {};
+        let aulaConcluida = false;
+        
+        // Elementos do pop-up
+        const popupOverlay = document.getElementById('popupResultados');
+        const btnVoltarHome = document.getElementById('btnVoltarHome');
+        const celebrationSparkles = document.getElementById('celebrationSparkles');
+        
+        // Criar efeito de brilho na celebração
+        function criarSparkles() {
+            for (let i = 0; i < 8; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                const angle = (i / 8) * 2 * Math.PI;
+                const radius = 50;
+                sparkle.style.left = 50 + radius * Math.cos(angle) + 'px';
+                sparkle.style.top = 50 + radius * Math.sin(angle) + 'px';
+                sparkle.style.animationDelay = (i * 0.25) + 's';
+                celebrationSparkles.appendChild(sparkle);
+            }
+        }
+        
+        // Atualiza o contador de questões
+        function atualizarContador() {
+            document.getElementById('questao-atual').textContent = questaoAtual;
+        }
+        
+        // Mostra a questão especificada
+        function mostrarQuestao(numero) {
+            // Oculta todas as questões
+            for (let i = 1; i <= totalQuestoes; i++) {
+                const questao = document.getElementById(`questao-${i}`);
+                questao.style.display = 'none';
+                questao.classList.remove('ativa');
+            }
+            
+            // Mostra a questão atual
+            const questaoAtualElement = document.getElementById(`questao-${numero}`);
+            questaoAtualElement.style.display = 'block';
+            questaoAtualElement.classList.add('ativa');
+            
+            // Atualiza estado dos botões
+            document.getElementById('btn-anterior').disabled = (numero === 1);
+            document.getElementById('btn-proximo').style.display = (numero === totalQuestoes) ? 'none' : 'block';
+            document.getElementById('btn-enviar').style.display = (numero === totalQuestoes) ? 'block' : 'none';
+            
+            atualizarContador();
+        }
+        
+        // Sistema de seleção de alternativas
+        document.querySelectorAll('.alternativa').forEach(alternativa => {
+            alternativa.addEventListener('click', function() {
+                const questao = this.getAttribute('data-questao');
+                
+                // Remove seleção de outras alternativas na mesma questão
+                document.querySelectorAll(`.alternativa[data-questao="${questao}"]`).forEach(a => {
+                    a.classList.remove('selecionada');
+                });
+                
+                // Seleciona a alternativa clicada
+                this.classList.add('selecionada');
+                
+                // Salva a resposta
+                respostas[questao] = this.getAttribute('data-alternativa');
+                
+                // Atualiza progresso
+                atualizarProgresso();
+            });
+        });
+        
+        // Navegação entre questões
+        document.getElementById('btn-proximo').addEventListener('click', function() {
+            if (questaoAtual < totalQuestoes) {
+                questaoAtual++;
+                mostrarQuestao(questaoAtual);
+            }
+        });
+        
+        document.getElementById('btn-anterior').addEventListener('click', function() {
+            if (questaoAtual > 1) {
+                questaoAtual--;
+                mostrarQuestao(questaoAtual);
+            }
+        });
+        
+        // Função para criar confetti
+        function criarConfetti() {
+            const popupContainer = document.querySelector('.popup-container');
+            for (let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 4 + 's';
+                confetti.style.background = getRandomColor();
+                confetti.style.width = Math.random() * 6 + 4 + 'px';
+                confetti.style.height = Math.random() * 6 + 4 + 'px';
+                popupContainer.appendChild(confetti);
+            }
+        }
+        
+        function getRandomColor() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff', '#5f27cd'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Função para mostrar resultados
+        function mostrarResultados(acertos, erros, nota) {
+            // Atualiza os valores no pop-up
+            document.querySelector('.acertos').textContent = acertos;
+            document.querySelector('.erros').textContent = erros;
+            document.querySelector('.nota-value').textContent = nota;
+            
+            // Mostra o pop-up
+            popupOverlay.style.display = 'flex';
+            criarConfetti();
+            criarSparkles();
+            
+            // Animação de celebração
+            const elementos = document.querySelectorAll('.result-value, .nota-value');
+            elementos.forEach(el => {
+                el.classList.add('celebrate');
+                setTimeout(() => el.classList.remove('celebrate'), 600);
+            });
+        }
+        
+        // Ação do botão enviar
+        document.getElementById('btn-enviar').addEventListener('click', function() {
+            const todasRespondidas = Object.keys(respostas).length === totalQuestoes;
+            
+            if (todasRespondidas) {
+                document.getElementById('completion-message').style.display = 'block';
+                aulaConcluida = true;
+                atualizarProgresso();
+                
+                // Simula correção e mostra resultados
+                setTimeout(() => {
+                    mostrarResultados(9, 1, 9.0); // Valores de exemplo
+                }, 1000);
+            } else {
+                alert('Por favor, responda todas as questões antes de enviar.');
+            }
+        });
+        
+        // Função para atualizar progresso
+        function atualizarProgresso() {
+            const progresso = document.querySelector('.progress-fill');
+            const questoesRespondidas = Object.keys(respostas).length;
+            const progressoPercentual = Math.min(65 + (questoesRespondidas / totalQuestoes) * 35, 100);
+            
+            progresso.style.width = `${progressoPercentual}%`;
+            document.querySelector('.progress-info span:last-child').textContent = `${Math.round(progressoPercentual)}%`;
+        }
+        
+        // Botão de marcar como concluído
+        document.getElementById('btn-complete').addEventListener('click', function() {
+            if (aulaConcluida) {
+                alert('✅ Aula já foi concluída e enviada!');
+            } else {
+                alert('📝 Complete as atividades primeiro para marcar como concluído.');
+            }
+        });
+        
+        // Botão de anotações
+        document.getElementById('btn-notes').addEventListener('click', function() {
+            const anotacao = prompt('Digite sua anotação para esta aula:');
+            if (anotacao) {
+                alert('📒 Anotação salva com sucesso!');
+            }
+        });
+        
+        // Botão play do vídeo
+        document.querySelector('.play-button').addEventListener('click', function() {
+            alert('🎬 Iniciando reprodução do vídeo...');
+        });
+        
+        // Navegação entre vídeos
+        document.getElementById('btn-prev-video').addEventListener('click', function() {
+            alert('⏮️ Navegando para aula anterior...');
+        });
+        
+        document.getElementById('btn-next-video').addEventListener('click', function() {
+            if (aulaConcluida) {
+                alert('⏭️ Navegando para próxima aula...');
+            } else {
+                alert('📝 Complete esta aula primeiro para avançar.');
+            }
+        });
+        
+        // Voltar para home
+        btnVoltarHome.addEventListener('click', function() {
+            popupOverlay.style.display = 'none';
+            alert('Redirecionando para a página inicial...');
+        });
+        
+        // Fechar pop-up ao clicar fora
+        popupOverlay.addEventListener('click', function(e) {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = 'none';
+            }
+        });
+        
+        // Tecla ESC para fechar
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && popupOverlay.style.display === 'flex') {
+                popupOverlay.style.display = 'none';
+            }
+        });
+        
+        // Inicializa mostrando a primeira questão
+        mostrarQuestao(1);
+        atualizarProgresso();
+    </script>
+</body>
+</html>
